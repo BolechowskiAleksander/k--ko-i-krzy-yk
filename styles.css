@@ -36,12 +36,17 @@ body {
 .board__item:hover {
     background-color: rgb(134, 141, 134);
 }
-.page__reset-button {
+.page__options {
+    display: flex;
+    justify-content: center;
+  }
+.page__player-mode-button {
+    margin: 10px;
     padding: 10px 20px;
     border: 2px solid gray;
     border-radius: 5px;
     cursor: pointer;
-}
+  }
 .page__reset-button:hover {
     background-color: darkgrey;
 }

@@ -1,11 +1,10 @@
 const squares = document.querySelectorAll('.board__item');
-const resetButton = document.querySelector('.page__reset-button');
 const result = document.querySelector('.page__result');
 const playerModeButtons = document.querySelectorAll('.page__player-mode-button');
 let currentPlayer = 'X'; 
 let againstComputer = false;
 
-function checkWinner() {
+const checkWinner = () => {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
@@ -26,7 +25,7 @@ function checkWinner() {
     return null;
 }
 
-function squareClick(e) {
+const squareClick = (e) => {
     const square = e.target;
     if (square.innerText !== '' || checkWinner() || (againstComputer && currentPlayer === 'O')) {
         return;
@@ -63,7 +62,7 @@ function squareClick(e) {
     }
 }
 
-function getRandomEmptySquare() {
+const getRandomEmptySquare = () => {
     const emptySquares = Array.from(squares).filter(square => square.innerText === '');
     if (emptySquares.length > 0) {
         const randomIndex = Math.floor(Math.random() * emptySquares.length);
@@ -73,10 +72,8 @@ function getRandomEmptySquare() {
     }
 }
 
-function resetGame() {
-    squares.forEach(function(square) {
-        square.innerText = '';
-    });
+const resetGame = () => {
+    squares.forEach(square => square.innerText = '');
     result.innerText = '...';
     currentPlayer = 'X';
 }
@@ -85,13 +82,11 @@ squares.forEach((square) => {
     square.addEventListener('click', squareClick);
 });
 
-resetButton.addEventListener('click', resetGame);
-
 playerModeButtons.forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', () => {
         playerModeButtons.forEach(button => button.classList.remove('active'));
-        this.classList.add('active');
-        againstComputer = this.textContent.includes('komputerowi');
+        button.classList.add('active');
+        againstComputer = button.textContent.includes('komputerowi');
         resetGame();
     });
 });
